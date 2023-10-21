@@ -1,0 +1,95 @@
+.action {
+    @apply bg-white p-4 hover:bg-gray-100;
+}
+
+.on-confirm {
+    @apply bg-blue-400 text-white pl-4 pr-4 p-2 font-bold rounded-md
+}
+
+.red {
+    @apply hover:bg-red-400 hover:text-white font-bold transition
+}
+
+.green {
+    @apply hover:bg-green-400 hover:text-white font-bold transition
+}
+
+.svg {
+    @apply hover:scale-[1.1] transition duration-300 hover:text-gray-500
+}
+
+.login {
+    position: relative;
+    overflow: hidden;
+    transition: .3s all ease-in-out;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.login::after {
+    content: "Login";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    position: absolute;
+    background-color: black;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    transition: .3s all ease-in-out;
+}
+
+.login:hover {
+    color: white;
+
+}
+
+.login:hover::after {
+    color: white;
+    letter-spacing: 2px;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('assets/Ronaldo.jpg');
+    background-position: center;
+    background-size: cover;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+
+
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #218df9 #ffffff;
+}
+
+*::-webkit-scrollbar {
+    width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #3d95c8;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+}
