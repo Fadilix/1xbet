@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BeatLoader } from 'react-spinners';
-import CopyToClipboardButton from '../components/copyToClipBoard';
+import CopyToClipboardButton from '../components/CopyToClipBoard';
 import useFirebase from '../hooks/useFirebase';
 
 const UserHistory = ({ collectionName }) => {
