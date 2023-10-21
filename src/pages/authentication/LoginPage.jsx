@@ -38,7 +38,7 @@ const LoginPage = () => {
             setIsLoading(true)
             e.preventDefault();
             try {
-                const response = await axios.post("http://apitest.eshapshop.com/api/admin/login", values)
+                const response = await axios.post("https://apitest.eshapshop.com/api/admin/login", values)
                 setIsLoading(false)
                 setErrors(errors);
                 if (response.data.connect === true) {

@@ -32,7 +32,7 @@ const RegisterPage = () => {
         const validationErrors = Validate(values);
         setErrors(validationErrors);
         setIsLoading(true)
-        axios.post('http://apitest.eshapshop.com/api/admin/create', values)
+        axios.post('https://apitest.eshapshop.com/api/admin/create', values)
             .then(response => {
                 setIsLoading(false)
                 console.log(response);
