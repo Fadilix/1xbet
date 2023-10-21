@@ -38,7 +38,7 @@ const LoginPage = () => {
             setIsLoading(true)
             e.preventDefault();
             try {
-                const response = await axios.post("https://4dfe-102-64-162-218.ngrok-free.app/api/admin/login", values)
+                const response = await axios.post("http://apitest.eshapshop.com/api/admin/login", values)
                 setIsLoading(false)
                 setErrors(errors);
                 if (response.data.connect === true) {
@@ -148,10 +148,6 @@ const LoginPage = () => {
 
                         <div className='absolute w-full h-3'>
                             <p className='text-red-400'>{errors.error && <span>{errors.error}</span>}</p>
-                        </div>
-                        <div className='flex flex-row items-center justify-between mt-[40px]'>
-                            <p className='text-[14px]'>Vous n'avez pas de compte ?</p>
-                            <button className='text-blue-500 font-bold hover:text-blue-700'><Link to="/register">S'inscrire</Link></button>
                         </div>
                     </form>
                 </div>

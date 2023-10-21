@@ -37,7 +37,7 @@ const RegisterPage = () => {
         const validationErrors = Validate(values);
         setErrors(validationErrors);
         setIsLoading(true)
-        axios.post('https://4dfe-102-64-162-218.ngrok-free.app/api/admin/create', values)
+        axios.post('http://apitest.eshapshop.com/api/admin/create', values)
             .then(response => {
                 setIsLoading(false)
                 console.log(response);

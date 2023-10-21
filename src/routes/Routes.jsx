@@ -16,7 +16,7 @@ const routerConfig = [
     Component: LoginPage,
   },
   {
-    path: "/register",
+    path: "/register-3aH7K6W",
     Component: RegisterPage,
   },
   {
