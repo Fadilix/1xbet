@@ -2,7 +2,7 @@ import React from 'react'
 import UserHistory from '../components/UserHistory'
 import { motion } from 'framer-motion'
 import SideBar from '../components/SideBar'
-import InfoBubble from '../components/infoBubble'
+import InfoBubble from '../components/InfoBubble'
 
 const Historique = () => {
     return (

@@ -4,7 +4,7 @@ import useFirebase from '../hooks/useFirebase';
 import toast from 'react-hot-toast';
 import clipboardCopy from 'clipboard-copy';
 import SideBar from '../components/SideBar';
-import InfoBubble from '../components/infoBubble';
+import InfoBubble from '../components/InfoBubble';
 
 const UserRetraits = () => {
     const { data, loading, handleAction } = useFirebase("retraits");

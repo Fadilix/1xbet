@@ -1,5 +1,5 @@
 import React from 'react'
-import InfoBubble from '../components/infoBubble';
+import InfoBubble from '../components/InfoBubble';
 import { motion } from 'framer-motion';
 import { BeatLoader } from 'react-spinners';
 import useFirebase from '../hooks/useFirebase';

@@ -4,7 +4,7 @@ import clipboardCopy from 'clipboard-copy';
 import toast from 'react-hot-toast';
 import useFirebase from '../hooks/useFirebase';
 import SideBar from '../components/SideBar';
-import InfoBubble from '../components/infoBubble';
+import InfoBubble from '../components/InfoBubble';
 
 const getStatusColor = (etat) => {
   switch (etat) {
