@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { motion } from "framer-motion"
 import Ronaldo from "../../assets/Ronaldo.jpg"
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { BeatLoader } from 'react-spinners';
 import toast from 'react-hot-toast';

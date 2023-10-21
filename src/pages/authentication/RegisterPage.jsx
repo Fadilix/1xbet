@@ -14,11 +14,6 @@ const RegisterPage = () => {
         setIsVisible(!isVisible);
     }
 
-    const users = [
-        {}
-    ]
-
-
     const [values, setValues] = useState({
         nom: "",
         password: "",

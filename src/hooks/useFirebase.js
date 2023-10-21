@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { firestore } from '../firebase/firebase';
 import { collection, onSnapshot, updateDoc, doc } from '@firebase/firestore';
 // import notificationSound from "../sounds/notification.wav"
