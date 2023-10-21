@@ -45,8 +45,8 @@ const RegisterPage = () => {
                 navigate("/")
             })
             .catch(error => {
-                console.error("Error during registration:", error);
-                toast.error("une erreur s'est produite, réessayer !");
+                console.error("Erreur pendant l'inscription:", error);
+                toast.error("Une erreur s'est produite, réessayer !");
                 setIsLoading(false)
             });
     }
