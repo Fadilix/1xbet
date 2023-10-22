@@ -38,6 +38,7 @@ const RegisterPage = () => {
                 toast.success('Inscription réussie!');
                 navigate("/")
             })
+            .then(toast.success('Vous pouvez maintenant vous connecter'))
             .catch(error => {
                 console.error("Erreur pendant l'inscription:", error);
                 toast.error("Une erreur s'est produite, réessayer !");
