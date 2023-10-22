@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import Messi from "../assets/Messi.avif"
+import Admin from "../assets/admin.png"
 import { Link } from 'react-router-dom';
 import useFirebase from '../hooks/useFirebase';
 import { UsernameContext } from '../contexts/UsernameContext';
@@ -55,7 +55,7 @@ const SideBar = () => {
 
             <div className='m-[10px] flex flex-row items-center justify-left space-x-4'>
                 {/* image */}
-                <img src={Messi} alt="Photo de profil" className='rounded-[50%] h-[50px] w-[50px]' />
+                <img src={Admin} alt="Photo de profil" className='rounded-[50%] h-[50px] w-[50px]' />
                 {showSideBar && <p className='font-bold'>{userName}</p>}
             </div>
             <ul className={`${!showSideBar && "flex flex-col items-center justify-center space-y-10 mt-10"}`}>

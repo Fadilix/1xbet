@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { firestore } from '../firebase/firebase';
 import { collection, onSnapshot, updateDoc, doc } from '@firebase/firestore';
 import notificationSound from "../sounds/alertNotif.mp3"
-import deniedSound from "../sounds/denied.mp3"
-import confirmNotifSound from "../sounds/confirm.mp3"
 import { useNotif } from "../contexts/NotificationContext";
 
 const useFirebase = (collectionName) => {
@@ -12,9 +10,7 @@ const useFirebase = (collectionName) => {
   const testCollectionRef = collection(firestore, collectionName);
   const audioRef = useRef(new Audio(notificationSound));
   const [isActiveNotif, setIsActiveNotif] = useNotif();
-  // useEffect(() => {
-
-  // })
+  
   useEffect(() => {
     const unsubscribe = onSnapshot(testCollectionRef, (querySnapshot) => {
       const FirebaseData = querySnapshot.docs.map((doc) => ({

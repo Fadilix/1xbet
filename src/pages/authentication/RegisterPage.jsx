@@ -35,7 +35,6 @@ const RegisterPage = () => {
         axios.post('https://apitest.eshapshop.com/api/admin/create', values)
             .then(response => {
                 setIsLoading(false)
-                console.log(response);
                 toast.success('Inscription réussie!');
                 navigate("/")
             })
