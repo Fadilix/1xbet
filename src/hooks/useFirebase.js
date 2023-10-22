@@ -11,8 +11,6 @@ const useFirebase = (collectionName) => {
   const [loading, setLoading] = useState(true);
   const testCollectionRef = collection(firestore, collectionName);
   const audioRef = useRef(new Audio(notificationSound));
-  const confirmAudio = new Audio(confirmNotifSound)
-  const deniedAudio = new Audio(deniedSound)
   const [isActiveNotif, setIsActiveNotif] = useNotif();
   // useEffect(() => {
 
@@ -48,13 +46,6 @@ const useFirebase = (collectionName) => {
             : action === "echouer" ? "2"
               : action === "refuser" && "4"
       };
-
-      if (action === "valider" || action === "accepter") {
-        confirmAudio.play();
-      } else {
-        deniedAudio.play();
-
-      }
 
       await updateDoc(itemRef, updatedata);
     } catch (error) {
