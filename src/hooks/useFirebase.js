@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { firestore } from '../firebase/firebase';
 import { collection, onSnapshot, updateDoc, doc } from '@firebase/firestore';
-// import notificationSound from "../sounds/notification.wav"
+import notificationSound from "../sounds/notification.wav"
 import deniedSound from "../sounds/denied.mp3"
 import confirmNotifSound from "../sounds/confirm.mp3"
 
@@ -9,7 +9,7 @@ const useFirebase = (collectionName) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const testCollectionRef = collection(firestore, collectionName);
-  // const audioRef = useRef(new Audio(notificationSound));
+  const audioRef = useRef(new Audio(notificationSound));
   const confirmAudio = new Audio(confirmNotifSound)
   const deniedAudio = new Audio(deniedSound)
 
@@ -23,9 +23,9 @@ const useFirebase = (collectionName) => {
         ...doc.data(),
       }));
 
-      // if(data.length < FirebaseData.length) {
-      //   audioRef.current.play();
-      // }
+      if(data.length < FirebaseData.length) {
+        audioRef.current.play();
+      }
 
       setData(FirebaseData.reverse());
       setLoading(false);
@@ -43,7 +43,7 @@ const useFirebase = (collectionName) => {
         etat: action === 'valider' ? "1"
           : action === "accepter" ? "0"
             : action === "echouer" ? "2"
-              : action === "refuser" && 4,
+              : action === "refuser" && "4"
       };
 
       if (action === "valider" || action === "accepter") {

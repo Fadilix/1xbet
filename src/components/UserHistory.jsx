@@ -56,7 +56,8 @@ const UserHistory = ({ collectionName }) => {
                         </thead>
                         <tbody>
                             {filteredData
-                                .filter((data) => data.etat !== "-1" && data.etat !== "0")
+                                .filter((data) => data.etat === "1" || data.etat === "2" || data.etat === "4")
+                                .reverse()
                                 .map((item) => (
                                 <tr key={item.id} className='h-[60px]'>
                                     <td className="p-2">
