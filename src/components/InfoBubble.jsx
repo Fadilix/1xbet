@@ -15,7 +15,7 @@ const InfoBubble = () => {
                     <p className='text-2xl mb-[10px] font-bold'>Statut</p>
                     <div className='flex items-center space-x-4' >
                         <div className='bg-blue-400 w-4 h-4 rounded-xl'></div>
-                        <p>Prêt pour vérification</p>
+                        <p>Prêt pour validation</p>
                     </div>
 
                     <div className='flex items-center space-x-4' >
