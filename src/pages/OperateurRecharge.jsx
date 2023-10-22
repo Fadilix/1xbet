@@ -95,7 +95,7 @@ const OperateurRecharge = () => {
                                                     </button>
 
                                                     <button
-                                                        className='action green rounded-md bg-purple-100 font-bold shadow-lg hover:bg-red-500'
+                                                        className='action bg-red-100 green rounded-md font-bold shadow-lg hover:bg-red-500'
                                                         onClick={() => handleAction(item.id, 'refuser')}
                                                     >
                                                         Refuser
