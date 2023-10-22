@@ -6,6 +6,7 @@ import useFirebase from '../hooks/useFirebase';
 import SideBar from '../components/SideBar';
 import toast from 'react-hot-toast';
 import clipboardCopy from 'clipboard-copy';
+import Notification from '../components/Notification';
 const OperateurRecharge = () => {
     const { data, loading, handleAction } = useFirebase("demandes")
 
@@ -35,6 +36,7 @@ const OperateurRecharge = () => {
     return (
 
         <div className='flex h-[100vh] items-center justify-center bg-white' >
+            <Notification />
             <motion.div className="flex ">
                 <div className='mt-[-20px]'>
                     <SideBar />

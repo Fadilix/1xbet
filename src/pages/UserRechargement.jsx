@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import useFirebase from '../hooks/useFirebase';
 import SideBar from '../components/SideBar';
 import InfoBubble from '../components/InfoBubble';
+import Notification from '../components/Notification';
 
 const getStatusColor = (etat) => {
   switch (etat) {
@@ -37,9 +38,10 @@ const UserRechargement = () => {
 
   return (
     <div className='flex h-[100vh] items-center justify-center bg-white'>
+      <Notification />
       <div className='bg-white p-[20px] w-[1000px] h-[90vh] overflow-auto rounded-md scrollbar'>
         <div className='mt-[-60px]'>
-          <SideBar/>
+          <SideBar />
         </div>
         <div className="container mx-auto p-4 mt-[60px]">
           <h2 className="text-2xl font-bold mb-4">Liste des demandes</h2>

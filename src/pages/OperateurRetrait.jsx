@@ -6,6 +6,7 @@ import useFirebase from '../hooks/useFirebase';
 import SideBar from '../components/SideBar';
 import clipboardCopy from 'clipboard-copy';
 import toast from 'react-hot-toast';
+import Notification from '../components/Notification';
 const OperateurRetrait = () => {
     const { data, loading, handleAction } = useFirebase("retraits")
 
@@ -36,6 +37,8 @@ const OperateurRetrait = () => {
             <motion.div
                 className="flex h-full"
             >
+            <Notification />
+
 
                 <div className='mt-[-12px]'>
                     <SideBar />

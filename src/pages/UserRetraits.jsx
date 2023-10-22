@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import clipboardCopy from 'clipboard-copy';
 import SideBar from '../components/SideBar';
 import InfoBubble from '../components/InfoBubble';
+import Notification from '../components/Notification';
 
 const UserRetraits = () => {
     const { data, loading, handleAction } = useFirebase("retraits");
@@ -35,7 +36,9 @@ const UserRetraits = () => {
 
     return (
         <div className='flex h-[100vh] items-center justify-center bg-white'>
+            <Notification />
             <div className="container mx-auto p-9 bg-white w-[1000px] h-[700px] overflow-auto rounded-md overflow-x-hidden">
+
                 <div className='mt-[-80px]'>
                     <SideBar />
                 </div>

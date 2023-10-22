@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { firestore } from '../firebase/firebase';
 import { collection, onSnapshot, updateDoc, doc } from '@firebase/firestore';
-import notificationSound from "../sounds/notification.wav"
+import notificationSound from "../sounds/alertNotif.mp3"
 import deniedSound from "../sounds/denied.mp3"
 import confirmNotifSound from "../sounds/confirm.mp3"
+import { useNotif } from "../contexts/NotificationContext";
 
 const useFirebase = (collectionName) => {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ const useFirebase = (collectionName) => {
   const audioRef = useRef(new Audio(notificationSound));
   const confirmAudio = new Audio(confirmNotifSound)
   const deniedAudio = new Audio(deniedSound)
-
+  const [isActiveNotif, setIsActiveNotif] = useNotif();
   // useEffect(() => {
 
   // })
@@ -23,8 +24,10 @@ const useFirebase = (collectionName) => {
         ...doc.data(),
       }));
 
-      if(data.length < FirebaseData.length) {
-        audioRef.current.play();
+      if(isActiveNotif){
+        if (data.length < FirebaseData.length) {
+          audioRef.current.play();
+        }
       }
 
       setData(FirebaseData.reverse());
