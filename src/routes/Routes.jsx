@@ -41,13 +41,13 @@ const routerConfig = [
     guard: (IsLoggedIn) => IsLoggedIn,
   },
   {
-    path: "/historique/demandes",
+    path: "/historique/:nom/demandes",
     Component: HistoriqueDemandes,
     guard: (IsLoggedIn) => IsLoggedIn,
   },
 
   {
-    path: "/historique/retraits",
+    path: "/historique/:nom/retraits",
     Component: HistoriqueRetraits,
     guard: (IsLoggedIn) => IsLoggedIn,
   },
