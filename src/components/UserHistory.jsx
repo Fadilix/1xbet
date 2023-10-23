@@ -27,7 +27,7 @@ const UserHistory = ({ collectionName }) => {
     }
 
     return (
-        <div className='bg-white p-[20px] w-[65vh] h-[750px] overflow-auto rounded-md shadow-xl mt-[20px]'>
+        <div className='bg-white p-[20px] w-[120vh] h-[750px] overflow-auto rounded-md mt-[20px]'>
             <div className="container mx-auto p-4">
                 <div className='flex space-x-4 items-center justify-between'>
                     <h2 className="text-2xl font-bold mb-4">Historique des {collectionName}</h2>
@@ -50,8 +50,8 @@ const UserHistory = ({ collectionName }) => {
                         <thead>
                             <tr>
                                 <th className="p-2 text-left">Nom du client</th>
-                                <th className='p-2'>Statut</th>
-                                <th className='p-2'>Copier</th>
+                                <th className='p-2 text-left'>Statut</th>
+                                <th className='p-2 text-left'>Copier</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,14 +59,14 @@ const UserHistory = ({ collectionName }) => {
                                 .filter((data) => data.etat === "1" || data.etat === "2" || data.etat === "4")
                                 .reverse()
                                 .map((item) => (
-                                <tr key={item.id} className='h-[60px]'>
+                                <tr key={item.id} className='h-[70px]'>
                                     <td className="p-2">
                                         {!item.clientName ? <p>pas de nom</p> : <p>{item.clientName}</p>}
                                     </td>
-                                    <td className='pl-[30px]'>
+                                    <td className=''>
                                         <div className={`${getStatusColor(item.etat)} w-6 h-6 rounded-xl ml-6`}></div>
                                     </td>
-                                    <td className='pl-[20px]'>
+                                    <td className=''>
                                         <CopyToClipboardButton
                                             accountNumber={item.compte}
                                             client={item.clientName}

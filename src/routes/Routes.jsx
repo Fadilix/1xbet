@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/authentication/LoginPage";
 import RegisterPage from "../pages/authentication/RegisterPage";
-import Historique from "../pages/Historique";
 import { AuthContext } from "../contexts/LoginContext";
 import { useContext } from "react";
 import UserRechargement from "../pages/UserRechargement";
@@ -9,6 +8,8 @@ import UserRetraits from "../pages/UserRetraits";
 import OperateurRecharge from "../pages/OperateurRecharge";
 import OperateurRetrait from "../pages/OperateurRetrait";
 import PageNotFound from "../pages/PageNotFound";
+import HistoriqueDemandes from "../pages/HistoriqueDemandes";
+import HistoriqueRetraits from "../pages/HistoriqueRetraits";
 
 const routerConfig = [
   {
@@ -40,8 +41,14 @@ const routerConfig = [
     guard: (IsLoggedIn) => IsLoggedIn,
   },
   {
-    path: "/historique",
-    Component: Historique,
+    path: "/historique/demandes",
+    Component: HistoriqueDemandes,
+    guard: (IsLoggedIn) => IsLoggedIn,
+  },
+
+  {
+    path: "/historique/retraits",
+    Component: HistoriqueRetraits,
     guard: (IsLoggedIn) => IsLoggedIn,
   },
   {
