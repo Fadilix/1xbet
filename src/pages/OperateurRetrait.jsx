@@ -39,8 +39,7 @@ const OperateurRetrait = () => {
             >
             <Notification />
 
-
-                <div className='mt-[-12px]'>
+                <div className=''>
                     <SideBar />
                 </div>
                 {/* Main Content */}
