@@ -2,9 +2,9 @@ import React from 'react';
 import clipboardCopy from 'clipboard-copy';
 import toast from 'react-hot-toast';
 
-const CopyToClipboardButton = ({ amount, client, accountNumber, date }) => {
+const CopyToClipboardButton = ({ amount, client, accountNumber, date, operator, validator }) => {
     const handleCopyClick = async () => {
-        const value = `Montant : ${amount}\nNom du client : ${client}\nNuméro de compte : ${accountNumber}\nDate : ${date}`
+        const value = `Montant : ${amount}\nNom du client : ${client}\nNuméro de compte : ${accountNumber}\nDate : ${date}\nOperateur : ${operator}\nvalidateur : ${validator}`
         try {
             await clipboardCopy(value);
             toast.success("Copié avec succès")

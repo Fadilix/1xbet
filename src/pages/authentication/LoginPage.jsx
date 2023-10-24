@@ -7,6 +7,7 @@ import { BeatLoader } from 'react-spinners';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/LoginContext';
 import { UsernameContext } from '../../contexts/UsernameContext';
+import { useUserRole } from '../../contexts/UserRoleContext';
 
 const LoginPage = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -23,6 +24,9 @@ const LoginPage = () => {
         nom: "",
         password: ""
     });
+
+    const { userRole, setRole } = useUserRole();
+    console.log("before", userRole);
 
     const [userName, setUserName] = useContext(UsernameContext)
     const navigate = useNavigate()
@@ -41,7 +45,12 @@ const LoginPage = () => {
                 const response = await axios.post("https://apitest.eshapshop.com/api/admin/login", values)
                 setIsLoading(false)
                 setErrors(errors);
+                
                 // console.log(response.data)
+                setRole(response.data)
+
+                console.log("after", userRole)
+                // console.log(role === "1")
                 if (response.data.connect === true) {
                     await setUserName(values.nom)
                     setIsLoggedIn(true);
