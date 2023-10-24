@@ -29,7 +29,6 @@ const LoginPage = () => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
     const [errors, setErrors] = useState({})
-
     const handleLoginClick = async (e) => {
         if (!values.nom || !values.password) {
             toast.error("Veuillez remplir tous les champs")
@@ -41,15 +40,18 @@ const LoginPage = () => {
                 const response = await axios.post("https://apitest.eshapshop.com/api/admin/login", values)
                 setIsLoading(false)
                 setErrors(errors);
+
                 if (response.data.connect === true) {
-                    setUserName(values.nom)
+                    await setUserName(values.nom)
                     setIsLoggedIn(true);
-                    // console.log(IsLoggedIn)
-                    navigate(`/home/${userName}/rechargements`);
+                    if(userName === "admin"){
+                        navigate(`/home/${userName}/rechargements`);
+                    } else{
+                        navigate(`home/${userName}/operateur/rechargements`)
+                    }
                     toast.success("Bienvenue");
                 } else {
                     setErrors({ error: response.data.error })
-
                 }
             } catch (e) {
                 setErrors({ error: "Vérifier votre connexion et réessayer" });
@@ -59,6 +61,7 @@ const LoginPage = () => {
             }
         }
     }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
