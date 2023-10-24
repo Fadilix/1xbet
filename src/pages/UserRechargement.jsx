@@ -129,12 +129,13 @@ const UserRechargement = () => {
                           }
                           text="Refuser"
                         />
-
-                        <ActionButton
-                          className='action hover:bg-blue-400 red rounded-md bg-blue-100 font-bold shadow-lg ml-[10px]'
-                          onClick={() => { handleVerif(item.id, { traitement: "-1" }) }}
-                          text="Traiter"
-                        />
+                        {item.traitement !== "-1" && (
+                          <ActionButton
+                            className='action hover:bg-blue-400 red rounded-md bg-blue-100 font-bold shadow-lg ml-[10px]'
+                            onClick={() => { handleVerif(item.id, { traitement: "-1" }) }}
+                            text="Traiter"
+                          />
+                        )}
                       </td>
                     </tr>
                   ))}

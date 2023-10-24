@@ -114,12 +114,14 @@ const OperateurRecharge = () => {
                                                         Refuser
                                                     </button>
 
-                                                    <button
-                                                        className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500'
-                                                        onClick={() => handleVerif(item.id, { traitement: "-1" })}
-                                                    >
-                                                        Traiter
-                                                    </button>
+                                                    {item.traitement !== "-1" && (
+                                                        <button
+                                                            className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500'
+                                                            onClick={() => handleVerif(item.id, { traitement: "-1" })}
+                                                        >
+                                                            Traiter
+                                                        </button>
+                                                    )}
 
 
                                                 </td>

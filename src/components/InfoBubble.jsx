@@ -12,7 +12,7 @@ const InfoBubble = () => {
 
             {isVisible &&
                 <div className='absolute bottom-[150%] right-[20%] w-[300px] bg-gray-100 p-4 rounded-xl transition-all duration-300 border border-black'>
-                    <p className='text-2xl mb-[10px] font-bold'>Statut</p>
+                    <p className='text-2xl mb-[10px] font-bold'>Légende</p>
                     <div className='flex items-center space-x-4' >
                         <div className='bg-blue-400 w-4 h-4 rounded-xl'></div>
                         <p>Prêt pour validation</p>
@@ -36,6 +36,11 @@ const InfoBubble = () => {
                     <div className='flex items-center space-x-4' >
                         <div className='bg-yellow-400 w-4 h-4 rounded-xl'></div>
                         <p>Payement échoué</p>
+                    </div>
+
+                    <div className='flex items-center space-x-4' >
+                        <div className='bg-gray-200 w-6 h-4'></div>
+                        <p>En cours de vérification</p>
                     </div>
 
                 </div>

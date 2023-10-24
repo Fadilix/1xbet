@@ -91,7 +91,7 @@ const OperateurRetrait = () => {
                                                     {!item.numero ? <p>pas de numero</p> : <p>{item.numero}</p>}
                                                 </button>
                                             </td>
-                                            <td className="p-2 text-center flex space-x-4">
+                                            <td className="p-2 text-center flex space-x-4 items-center justify-center">
                                                 <button
                                                     className='action green rounded-md shadow-lg bg-purple-100'
                                                     onClick={
@@ -114,12 +114,15 @@ const OperateurRetrait = () => {
                                                 >
                                                     Refuser
                                                 </button>
-                                                <button
-                                                    className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500'
-                                                    onClick={() => handleVerif(item.id, { traitement: "-1" })}
-                                                >
-                                                    Traiter
-                                                </button>
+
+                                                {item.traitement !== "-1" && (
+                                                    <button
+                                                        className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500'
+                                                        onClick={() => handleVerif(item.id, { traitement: "-1" })}
+                                                    >
+                                                        Traiter
+                                                    </button>
+                                                )}
                                             </td>
 
                                             <td>

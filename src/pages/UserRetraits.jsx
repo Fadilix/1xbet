@@ -41,11 +41,11 @@ const UserRetraits = () => {
     return (
         <div className='flex h-[100vh] items-center justify-center bg-white w-[100vw]'>
             <Notification />
-            <div className="container flex justify-end mx-auto p-9 bg-white w-[1300px] h-[700px] overflow-auto rounded-md overflow-x-hidden">
+            <div className="container flex justify-end mx-auto p-9 bg-white w-[1400px] h-[700px] overflow-auto rounded-md overflow-x-hidden">
                 <div className='mt-[-80px]'>
                     <SideBar />
                 </div>
-                <div className='mt-[-40px]'>
+                <div className='mt-[-40px] w-[1100px]'>
                     <h2 className="text-4xl font-bold mb-[40px] text-center">Liste des retraits</h2>
 
                     {loading ? (
@@ -121,15 +121,14 @@ const UserRetraits = () => {
                                                     Refuser
                                                 </button>
 
-                                                <button
-                                                    className='action red rounded-md shadow-lg bg-blue-100 hover:bg-blue-400 ml-[10px]'
-                                                    onClick={() => {
-                                                        handleVerif(item.id, { traitement: "-1" })
-                                                    }
-                                                    }
-                                                >
-                                                    Traiter
-                                                </button>
+                                                {item.traitement !== "-1" && (
+                                                    <button
+                                                        className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500 ml-[10px]'
+                                                        onClick={() => handleVerif(item.id, { traitement: "-1" })}
+                                                    >
+                                                        Traiter
+                                                    </button>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}
