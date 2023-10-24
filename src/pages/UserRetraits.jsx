@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BeatLoader } from 'react-spinners';
 import useFirebase from '../hooks/useFirebase';
 import toast from 'react-hot-toast';
@@ -6,9 +6,13 @@ import clipboardCopy from 'clipboard-copy';
 import SideBar from '../components/SideBar';
 import InfoBubble from '../components/InfoBubble';
 import Notification from '../components/Notification';
+import { UsernameContext } from '../contexts/UsernameContext';
+import useFirebaseVerif from '../hooks/useFirebaseVerif';
 
 const UserRetraits = () => {
     const { data, loading, handleAction } = useFirebase("retraits");
+    const { verifdata, handleVerif } = useFirebaseVerif("retraits")
+    const [userName, setUserName] = useContext(UsernameContext);
     const handleCopyClick = async (item, property) => {
         await clipboardCopy(item[property]);
         toast.success("copié avec succès");
@@ -35,16 +39,14 @@ const UserRetraits = () => {
     }
 
     return (
-        <div className='flex h-[100vh] items-center justify-center bg-white'>
+        <div className='flex h-[100vh] items-center justify-center bg-white w-[100vw]'>
             <Notification />
-            <div className="container mx-auto p-9 bg-white w-[1000px] h-[700px] overflow-auto rounded-md overflow-x-hidden">
-
+            <div className="container flex justify-end mx-auto p-9 bg-white w-[1300px] h-[700px] overflow-auto rounded-md overflow-x-hidden">
                 <div className='mt-[-80px]'>
                     <SideBar />
                 </div>
-                <div className=' mt-[70px]'>
-
-                    <h2 className="text-2xl font-bold mb-4">Liste des retraits</h2>
+                <div className='mt-[-40px]'>
+                    <h2 className="text-4xl font-bold mb-[40px] text-center">Liste des retraits</h2>
 
                     {loading ? (
                         <div className="flex justify-center items-center h-[100vh]">
@@ -66,8 +68,8 @@ const UserRetraits = () => {
                                 {data
                                     .filter((item) => item.etat === "0")
                                     .map((item) => (
-                                        <tr key={item.id} className='text-center'>
-                                            <td>{item.timestamp.toDate().toLocaleString()}</td>
+                                        <tr key={item.id} className={`${item.traitement === "-1" && "bg-gray-100"} text-center`}>
+                                            <td className='pl-[10px]'>{item.timestamp.toDate().toLocaleString()}</td>
                                             <td className="p-2 m-2 text-center">
                                                 <button
                                                     onClick={() => handleCopyClick(item, "compte")}
@@ -99,15 +101,34 @@ const UserRetraits = () => {
                                             <td className="p-2 flex m-2 items-center justify-center">
                                                 <button
                                                     className='action green mr-2 rounded-md shadow-lg bg-green-100'
-                                                    onClick={() => handleAction(item.id, 'valider')}
+                                                    onClick={
+                                                        () => {
+                                                            handleAction(item.id, 'valider')
+                                                            handleVerif(item.id, { verifName: userName })
+                                                        }
+                                                    }
                                                 >
                                                     Accepter
                                                 </button>
                                                 <button
                                                     className='action red rounded-md shadow-lg bg-red-100'
-                                                    onClick={() => handleAction(item.id, 'echouer')}
+                                                    onClick={() => {
+                                                        handleAction(item.id, 'echouer')
+                                                        handleVerif(item.id, { verifName: userName })
+                                                    }
+                                                    }
                                                 >
                                                     Refuser
+                                                </button>
+
+                                                <button
+                                                    className='action red rounded-md shadow-lg bg-blue-100 hover:bg-blue-400 ml-[10px]'
+                                                    onClick={() => {
+                                                        handleVerif(item.id, { traitement: "-1" })
+                                                    }
+                                                    }
+                                                >
+                                                    Traiter
                                                 </button>
                                             </td>
                                         </tr>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { motion } from "framer-motion"
 import Ronaldo from "../../assets/Ronaldo.jpg"
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +13,7 @@ const LoginPage = () => {
     const handleShowVisibility = () => {
         setIsVisible(!isVisible);
     }
+
 
     // checking the auth state
     const [IsLoggedIn, setIsLoggedIn] = useContext(AuthContext)
@@ -40,15 +41,11 @@ const LoginPage = () => {
                 const response = await axios.post("https://apitest.eshapshop.com/api/admin/login", values)
                 setIsLoading(false)
                 setErrors(errors);
-
+                // console.log(response.data)
                 if (response.data.connect === true) {
                     await setUserName(values.nom)
                     setIsLoggedIn(true);
-                    if(userName === "admin"){
-                        navigate(`/home/${userName}/rechargements`);
-                    } else{
-                        navigate(`home/${userName}/operateur/rechargements`)
-                    }
+                    navigate(`/home/${userName}/rechargements`);
                     toast.success("Bienvenue");
                 } else {
                     setErrors({ error: response.data.error })

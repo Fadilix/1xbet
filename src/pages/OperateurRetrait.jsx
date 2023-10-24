@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import InfoBubble from '../components/InfoBubble';
 import { motion } from 'framer-motion';
 import { BeatLoader } from 'react-spinners';
@@ -7,9 +7,12 @@ import SideBar from '../components/SideBar';
 import clipboardCopy from 'clipboard-copy';
 import toast from 'react-hot-toast';
 import Notification from '../components/Notification';
+import { UsernameContext } from '../contexts/UsernameContext';
+import useFirebaseVerif from '../hooks/useFirebaseVerif';
 const OperateurRetrait = () => {
     const { data, loading, handleAction } = useFirebase("retraits")
-
+    const { verifdata, handleVerif } = useFirebaseVerif("retraits")
+    const [userName, setUserName] = useContext(UsernameContext);
     const getStatusColor = (etat) => {
         switch (etat) {
             case "1":
@@ -33,18 +36,18 @@ const OperateurRetrait = () => {
     // const name = window.location.href.split("/")[4]
     return (
 
-        <div className='flex h-[100vh] items-center justify-center bg-white'>
+        <div className='flex h-[100vh] items-center justify-end bg-white'>
             <motion.div
                 className="flex h-full"
             >
-            <Notification />
+                <Notification />
 
                 <div className=''>
                     <SideBar />
                 </div>
                 {/* Main Content */}
-                <div className="container mx-auto p-9 bg-white w-[1000px] rounded-md h-[750px] overflow-auto">
-                    <h2 className="text-2xl font-bold mb-4">Liste des retraits</h2>
+                <div className="container mx-auto p-9 bg-white w-[1300px] rounded-md h-[750px] overflow-auto">
+                    <h2 className="text-4xl font-bold mb-10 text-center">Liste des retraits</h2>
 
                     {loading ? (
                         <div className="flex justify-center items-center h-[100vh]">
@@ -66,7 +69,7 @@ const OperateurRetrait = () => {
                                 {data
                                     .filter(item => item.etat === "-1")
                                     .map((item) => (
-                                        <tr key={item.id} className=''>
+                                        <tr key={item.id} className={`${item.traitement === "-1" && "bg-gray-100"}`}>
                                             <td className='p-2 text-center'>
                                                 {item.timestamp ? item.timestamp.toDate().toLocaleString() : (
                                                     <p>No date</p>
@@ -91,16 +94,31 @@ const OperateurRetrait = () => {
                                             <td className="p-2 text-center flex space-x-4">
                                                 <button
                                                     className='action green rounded-md shadow-lg bg-purple-100'
-                                                    onClick={() => handleAction(item.id, 'accepter')}
+                                                    onClick={
+                                                        () => {
+                                                            handleAction(item.id, 'accepter');
+                                                            handleVerif(item.id, { operaName: userName })
+                                                        }
+                                                    }
                                                 >
                                                     Accepter
                                                 </button>
 
                                                 <button
                                                     className='bg-red-100 action hover:bg-red-500 green rounded-md shadow-lg'
-                                                    onClick={() => handleAction(item.id, 'refuser')}
+                                                    onClick={() => {
+                                                        handleAction(item.id, 'refuser')
+                                                        handleVerif(item.id, { operaName: userName })
+                                                    }
+                                                    }
                                                 >
                                                     Refuser
+                                                </button>
+                                                <button
+                                                    className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500'
+                                                    onClick={() => handleVerif(item.id, { traitement: "-1" })}
+                                                >
+                                                    Traiter
                                                 </button>
                                             </td>
 

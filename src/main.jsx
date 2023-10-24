@@ -5,15 +5,18 @@ import './index.css'
 import LoginContext from './contexts/LoginContext.jsx'
 import { UserNameContext } from './contexts/UsernameContext.jsx'
 import { NotificationProvider } from './contexts/NotificationContext.jsx'
+import { UserRoleProvider } from './contexts/UserRoleContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <LoginContext>
-        <UserNameContext>
-          <NotificationProvider>
+    <LoginContext>
+      <UserNameContext>
+        <NotificationProvider>
+          <UserRoleProvider>
             <App />
-          </NotificationProvider>
-        </UserNameContext>
-      </LoginContext>
+          </UserRoleProvider>
+        </NotificationProvider>
+      </UserNameContext>
+    </LoginContext>
   </React.StrictMode>,
 )

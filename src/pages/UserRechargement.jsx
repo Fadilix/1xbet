@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BeatLoader } from 'react-spinners';
 import clipboardCopy from 'clipboard-copy';
 import toast from 'react-hot-toast';
@@ -6,6 +6,9 @@ import useFirebase from '../hooks/useFirebase';
 import SideBar from '../components/SideBar';
 import InfoBubble from '../components/InfoBubble';
 import Notification from '../components/Notification';
+import { UsernameContext } from '../contexts/UsernameContext';
+import useFirebaseVerif from '../hooks/useFirebaseVerif';
+
 
 const getStatusColor = (etat) => {
   switch (etat) {
@@ -31,20 +34,22 @@ const ActionButton = ({ onClick, className, text }) => (
 // const name = window.location.pathname.split("/")[2]
 const UserRechargement = () => {
   const { data, loading, handleAction } = useFirebase("demandes");
+  const { verifdata, handleVerif } = useFirebaseVerif("demandes")
+  const [userName, setUserName] = useContext(UsernameContext);
   const handleCopyClick = async (item, property) => {
     await clipboardCopy(item[property]);
     toast.success("copié avec succès");
   };
 
   return (
-    <div className='flex h-[100vh] items-center justify-center bg-white'>
+    <div className='flex h-[100vh] items-center justify-end pr-[50px] bg-white'>
       <Notification />
-      <div className='bg-white p-[20px] w-[1000px] h-[90vh] overflow-auto rounded-md scrollbar'>
+      <div className='bg-white p-[20px] w-[1200px] h-[90vh] overflow-auto rounded-md scrollbar'>
         <div className='mt-[-60px]'>
           <SideBar />
         </div>
-        <div className="container mx-auto p-4 mt-[60px]">
-          <h2 className="text-2xl font-bold mb-4">Liste des demandes</h2>
+        <div className="container mx-auto p-4 mt-[20px]">
+          <h2 className="text-4xl font-bold mb-[40px] text-center">Liste des demandes</h2>
 
           {loading ? (
             <div className="flex justify-center items-center h-[100vh]">
@@ -66,7 +71,7 @@ const UserRechargement = () => {
                 {data
                   .filter(item => item.etat === "0")
                   .map((item) => (
-                    <tr key={item.id}>
+                    <tr key={item.id} className={`${item.traitement === "-1" && "bg-gray-100"}`}>
                       <td className='text-center'>
                         {item.timestamp ? (
                           item.timestamp.toDate().toLocaleString()
@@ -106,13 +111,29 @@ const UserRechargement = () => {
                       <td className="p-2 flex justify-center items-center">
                         <ActionButton
                           className='action green mr-2 rounded-md bg-green-100 font-bold shadow-lg'
-                          onClick={() => { handleAction(item.id, 'valider') }}
+                          onClick={
+                            () => {
+                              handleAction(item.id, 'valider')
+                              handleVerif(item.id, { verifName: userName })
+                            }
+                          }
                           text="Accepter"
                         />
                         <ActionButton
                           className='action red rounded-md bg-red-100 font-bold shadow-lg'
-                          onClick={() => { handleAction(item.id, 'echouer') }}
+                          onClick={
+                            () => {
+                              handleAction(item.id, 'echouer')
+                              handleVerif(item.id, { verifName: userName })
+                            }
+                          }
                           text="Refuser"
+                        />
+
+                        <ActionButton
+                          className='action hover:bg-blue-400 red rounded-md bg-blue-100 font-bold shadow-lg ml-[10px]'
+                          onClick={() => { handleVerif(item.id, { traitement: "-1" }) }}
+                          text="Traiter"
                         />
                       </td>
                     </tr>

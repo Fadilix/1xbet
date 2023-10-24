@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import InfoBubble from '../components/InfoBubble';
 import { motion } from 'framer-motion';
 import { BeatLoader } from 'react-spinners';
@@ -7,9 +7,12 @@ import SideBar from '../components/SideBar';
 import toast from 'react-hot-toast';
 import clipboardCopy from 'clipboard-copy';
 import Notification from '../components/Notification';
+import { UsernameContext } from '../contexts/UsernameContext';
+import useFirebaseVerif from '../hooks/useFirebaseVerif';
 const OperateurRecharge = () => {
     const { data, loading, handleAction } = useFirebase("demandes")
-
+    const { verifdata, handleVerif } = useFirebaseVerif("demandes")
+    const [userName, setUserName] = useContext(UsernameContext);
     const getStatusColor = (etat) => {
         switch (etat) {
             case "1":
@@ -35,15 +38,15 @@ const OperateurRecharge = () => {
 
     return (
 
-        <div className='flex h-[100vh] items-center justify-center bg-white' >
+        <div className='flex h-[100vh] items-center justify-end pr-[50px] bg-white' >
             <Notification />
             <motion.div className="flex ">
                 <div className='mt-[-20px]'>
                     <SideBar />
                 </div>
-                <div className='bg-white p-[20px] w-[1000px] overflow-auto rounded-md h-[750px]'>
+                <div className='bg-white p-[20px] w-[1200px] overflow-auto rounded-md h-[750px]'>
                     <div className="container mx-auto p-4">
-                        <h2 className="text-2xl font-bold mb-4">Liste des demandes</h2>
+                        <h2 className="text-4xl font-bold mb-10 text-center">Liste des demandes</h2>
 
                         {loading ? (
                             <div className="flex justify-center items-center h-[100vh]">
@@ -64,7 +67,7 @@ const OperateurRecharge = () => {
                                 <tbody>
                                     {data.filter(item => item.etat === "-1")
                                         .map((item) => (
-                                            <tr key={item.id}>
+                                            <tr key={item.id} className={`${item.traitement === "-1" && "bg-gray-100"}`}>
                                                 <td className="p-2 text-center">
                                                     {item.timestamp ? item.timestamp.toDate().toLocaleString() : (
                                                         <p>No date</p>
@@ -89,17 +92,36 @@ const OperateurRecharge = () => {
                                                 <td className="p-2 text-center flex justify-center space-x-2">
                                                     <button
                                                         className='action green rounded-md bg-purple-100 font-bold shadow-lg'
-                                                        onClick={() => handleAction(item.id, 'accepter')}
+                                                        onClick={
+                                                            () => {
+                                                                handleAction(item.id, 'accepter')
+                                                                handleVerif(item.id, { operaName: userName })
+                                                            }
+                                                        }
                                                     >
                                                         Accepter
                                                     </button>
 
                                                     <button
                                                         className='action bg-red-100 green rounded-md font-bold shadow-lg hover:bg-red-500'
-                                                        onClick={() => handleAction(item.id, 'refuser')}
+                                                        onClick={
+                                                            () => {
+                                                                handleAction(item.id, 'refuser')
+                                                                handleVerif(item.id, { operaName: userName })
+                                                            }
+                                                        }
                                                     >
                                                         Refuser
                                                     </button>
+
+                                                    <button
+                                                        className='action bg-blue-100 green rounded-md font-bold shadow-lg hover:bg-blue-500'
+                                                        onClick={() => handleVerif(item.id, { traitement: "-1" })}
+                                                    >
+                                                        Traiter
+                                                    </button>
+
+
                                                 </td>
 
 
