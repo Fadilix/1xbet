@@ -19,21 +19,24 @@ const LoginPage = () => {
     // checking the auth state
     const [IsLoggedIn, setIsLoggedIn] = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(false);
+    const { userRole, setRole } = useUserRole();
 
     const [values, setValues] = useState({
         nom: "",
         password: ""
     });
 
-    const { userRole, setRole } = useUserRole();
-    console.log("before", userRole);
 
     const [userName, setUserName] = useContext(UsernameContext)
     const navigate = useNavigate()
+
     const handleInputChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
+
     const [errors, setErrors] = useState({})
+    const [data, setData] = useState(null); // State to store the data
+
     const handleLoginClick = async (e) => {
         if (!values.nom || !values.password) {
             toast.error("Veuillez remplir tous les champs")
@@ -45,16 +48,17 @@ const LoginPage = () => {
                 const response = await axios.post("https://apitest.eshapshop.com/api/admin/login", values)
                 setIsLoading(false)
                 setErrors(errors);
-                
-                // console.log(response.data)
-                setRole(response.data)
 
-                console.log("after", userRole)
-                // console.log(role === "1")
                 if (response.data.connect === true) {
-                    await setUserName(values.nom)
+                    const user = `${values.nom}${response.data.admin.role}`
+                    await setUserName(user.toString())
                     setIsLoggedIn(true);
-                    navigate(`/home/${userName}/rechargements`);
+
+                    if (user.includes("1")) {
+                        navigate(`/home/${userName}/rechargements`);
+                    } else {
+                        navigate(`/home/${userName}/operateur/rechargements`);
+                    }
                     toast.success("Bienvenue");
                 } else {
                     setErrors({ error: response.data.error })
@@ -66,11 +70,6 @@ const LoginPage = () => {
                 console.log("Erreur lors de la recherche des données");
             }
         }
-    }
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
     }
 
     return (
@@ -92,7 +91,7 @@ const LoginPage = () => {
                     {/* <img src="" alt="" /> */}
                     <h1 className='text-4xl font-bold text-center mb-[10px]'>Bienvenue !</h1>
                     <p className='text-center mb-[30px]'>Veuillez remplir les champs ci-dessous</p>
-                    <form action="" onSubmit={handleSubmit} className=''>
+                    <form action="" onSubmit={handleLoginClick} className=''>
                         <div className='border-b border-black mb-[10px]'>
                             <label htmlFor="" className=''>Nom</label>
                             <div className='bg-transparent flex flex-row pr-[10px] items-center justify-between'>
@@ -147,7 +146,6 @@ const LoginPage = () => {
                                 <button
                                     type="submit"
                                     className='text-xl font-bold w-full text-center border border-black text-black bg-transparent rounded-md p-[8px] login transition duration-300'
-                                    onClick={handleLoginClick}
                                 >
                                     Login
                                 </button>
