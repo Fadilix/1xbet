@@ -50,11 +50,10 @@ const LoginPage = () => {
                 setErrors(errors);
 
                 if (response.data.connect === true) {
-                    const user = `${values.nom}${response.data.admin.role}`
-                    await setUserName(user.toString())
+                    await setUserName(values.nom)
                     setIsLoggedIn(true);
-
-                    if (user.includes("1")) {
+                    setRole(response.data.admin.role);
+                    if (userRole === "1") {
                         navigate(`/home/${userName}/rechargements`);
                     } else {
                         navigate(`/home/${userName}/operateur/rechargements`);

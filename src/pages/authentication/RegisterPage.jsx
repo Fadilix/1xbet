@@ -18,11 +18,19 @@ const RegisterPage = () => {
         nom: "",
         password: "",
         contact: "",
+        role: "1"
     });
 
     const handleInputChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value })
+        if (e.target.name === "role") {
+            const newRoleValue = e.target.checked ? "1" : "2";
+            setValues({ ...values, [e.target.name]: newRoleValue })
+        } else {
+            setValues({ ...values, [e.target.name]: e.target.value })
+        }
     }
+
+    console.log(values.role)
 
 
     const navigate = useNavigate();
@@ -105,6 +113,8 @@ const RegisterPage = () => {
                             <p className='text-red-400'>{errors.contact && <span>{errors.contact}</span>}</p>
                         </div>
 
+                      
+
 
 
                         <div className='mt-[40px]'>
@@ -140,6 +150,20 @@ const RegisterPage = () => {
 
                         <div className='absolute z-0 h-3'>
                             <p className='text-red-400'>{errors.password && <span>{errors.password}</span>}</p>
+                        </div>
+
+                        <div className='mb-[10px] mt-[40px]'>
+                            <label htmlFor="" className=''><b>Role</b></label>
+                            <div className='bg-transparent flex flex-row pr-[10px] items-center space-x-2'>
+                                <input
+                                    type="checkbox"
+                                    className='bg-transparent focus:outline-none border-none'
+                                    checked={values.role === "1"}
+                                    onChange={handleInputChange}
+                                    name='role'
+                                />
+                                <p>Validateur par défaut</p>
+                            </div>
                         </div>
 
                         <div className='text-center mt-[60px] mb-[10px]'>

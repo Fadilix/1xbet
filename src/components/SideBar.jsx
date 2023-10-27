@@ -36,6 +36,7 @@ const SideBar = () => {
     // console.log(rechargeCount);
 
     const [userName, setUserName] = useContext(UsernameContext)
+    const { userRole, setRole } = useUserRole();
     const handleOperationClick = () => { }
     return (
         <div className={`${showSideBar ? "w-64" : "w-20"} bg-gray-800 text-white transition-all duration-300 fixed left-0`} style={{ height: "120vh" }}>
@@ -56,18 +57,10 @@ const SideBar = () => {
             <div className='m-[10px] flex flex-row items-center justify-left space-x-4'>
                 {/* image */}
                 <img src={Admin} alt="Photo de profil" className='rounded-[50%] h-[50px] w-[50px]' />
-                {showSideBar &&
-                    <p className='font-bold relative'>
-                        {userName.split('').map((char, index) => (
-                            <span key={index} className={index === userName.length - 1 ? 'text-blue-400' : ''}>
-                                {char}
-                            </span>
-                        ))}
-                    </p>
-                }
+                {showSideBar && <p className='font-bold'>{userName}</p>}
             </div>
             <ul className={`${!showSideBar && "flex flex-col items-center justify-center space-y-10 mt-10"}`}>
-                {userName.includes("1") && (
+                {userRole === "1" && (
                     <>
                         <button onClick={handleOperationClick} className={`${showSideBar ? "w-full" : ""} object-cover`}>
                             <Link to={`/home/${userName}/rechargements`}>
@@ -106,9 +99,8 @@ const SideBar = () => {
                     </>
                 )}
 
-                {userName.includes("2") && (
+                {userRole === "2" && (
                     <>
-
                         <button onClick={handleOperationClick} className={`${showSideBar ? "w-full" : ""}`}>
                             <Link to={`/home/${userName}/operateur/rechargements`} className=''>
                                 {showSideBar ?
