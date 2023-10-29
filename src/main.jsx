@@ -6,6 +6,7 @@ import LoginContext from './contexts/LoginContext.jsx'
 import { UserNameContext } from './contexts/UsernameContext.jsx'
 import { NotificationProvider } from './contexts/NotificationContext.jsx'
 import { UserRoleProvider } from './contexts/UserRoleContext.jsx'
+import { BubbleStateProvider } from './contexts/InfoBubbleContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <UserNameContext>
         <NotificationProvider>
           <UserRoleProvider>
-            <App />
+            <BubbleStateProvider>
+              <App />
+            </BubbleStateProvider>
           </UserRoleProvider>
         </NotificationProvider>
       </UserNameContext>

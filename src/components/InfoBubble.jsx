@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
+import { useBubble } from '../contexts/InfoBubbleContext';
 
 const InfoBubble = () => {
-    const [isVisible, setIsVisible] = useState(false);
+    const [bubble, setBubble] = useBubble();
     return (
         <div className='fixed right-[1%] bottom-[4%] '>
-            <button onClick={() => setIsVisible(!isVisible)} className='hover:scale-[1.5] transition-all duration-300 text-blue-400'>
+            <button onClick={() => setBubble(!bubble)} className='hover:scale-[1.5] transition-all duration-300 text-blue-400'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                 </svg>
             </button>
 
-            {isVisible &&
+            {bubble &&
                 <div className='absolute bottom-[150%] right-[20%] w-[300px] bg-gray-100 p-4 rounded-xl transition-all duration-300 border border-black'>
                     <p className='text-2xl mb-[10px] font-bold'>Légende</p>
                     <div className='flex items-center space-x-4' >
