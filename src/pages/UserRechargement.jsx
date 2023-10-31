@@ -48,8 +48,8 @@ const UserRechargement = () => {
         <div className='absolute top-0'>
           <SideBar />
         </div>
-        <div className="container mx-auto p-4 mt-[20px]">
-          <h2 className="text-4xl font-bold mb-[40px] text-center">Liste des demandes</h2>
+        <div className="container mx-auto p-4">
+          <h2 className="text-4xl font-bold mb-[40px] text-center mt-[-40px]">Liste des demandes</h2>
 
           {loading ? (
             <div className="flex justify-center items-center h-[100vh]">

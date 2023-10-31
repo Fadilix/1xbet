@@ -46,7 +46,7 @@ const OperateurRecharge = () => {
                 </div>
                 <div className='bg-white p-[20px] w-[1200px] overflow-auto rounded-md h-[750px]'>
                     <div className="container mx-auto p-4">
-                        <h2 className="text-4xl font-bold mb-10 text-center">Liste des demandes</h2>
+                        <h2 className="text-4xl font-bold mb-10 text-center mt-[20px]">Liste des demandes</h2>
 
                         {loading ? (
                             <div className="flex justify-center items-center h-[100vh]">

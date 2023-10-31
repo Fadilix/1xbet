@@ -45,8 +45,8 @@ const UserRetraits = () => {
                 <div className='absolute top-0'>
                     <SideBar />
                 </div>
-                <div className='mt-[-40px] w-[1100px]'>
-                    <h2 className="text-4xl font-bold mb-[40px] text-center">Liste des retraits</h2>
+                <div className='w-[1100px]'>
+                    <h2 className="text-4xl font-bold mb-[40px] text-center mt-[-10px]">Liste des retraits</h2>
 
                     {loading ? (
                         <div className="flex justify-center items-center h-[100vh]">

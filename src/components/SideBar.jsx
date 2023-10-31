@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import useFirebase from '../hooks/useFirebase';
 import { UsernameContext } from '../contexts/UsernameContext';
 import { useUserRole } from '../contexts/UserRoleContext';
+import { useSideBarState } from '../contexts/SideBarContext';
 
 const SideBar = () => {
-    const [showSideBar, setShowSideBar] = useState(true);
+    const [showSideBar, setShowSideBar] = useSideBarState();
+
     const handleShowSideBar = () => {
         setShowSideBar(!showSideBar);
     }
