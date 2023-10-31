@@ -42,7 +42,7 @@ const OperateurRetrait = () => {
             >
                 <Notification />
 
-                <div className=''>
+                <div className='absolute top-0'>
                     <SideBar />
                 </div>
                 {/* Main Content */}

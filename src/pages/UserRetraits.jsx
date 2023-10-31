@@ -42,7 +42,7 @@ const UserRetraits = () => {
         <div className='flex h-[100vh] items-center justify-center bg-white w-[100vw]'>
             <Notification />
             <div className="container flex justify-end mx-auto p-9 bg-white w-[1400px] h-[700px] overflow-auto rounded-md overflow-x-hidden">
-                <div className='mt-[-80px]'>
+                <div className='absolute top-0'>
                     <SideBar />
                 </div>
                 <div className='mt-[-40px] w-[1100px]'>

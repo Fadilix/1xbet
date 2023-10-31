@@ -8,7 +8,7 @@ import Notification from '../components/Notification'
 const HistoriqueRetraits = () => {
     return (
         <motion.div
-            className='flex flex-row justify-center space-x-2 ml-[100px] h-[100vh] bg-white'
+            className='flex flex-row justify-center space-x-2 pl-[100px] h-[100vh] bg-white'
         >
             <SideBar />
             <UserHistory collectionName="retraits" />

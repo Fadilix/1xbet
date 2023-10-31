@@ -41,7 +41,7 @@ const OperateurRecharge = () => {
         <div className='flex h-[100vh] items-center justify-end pr-[50px] bg-white' >
             <Notification />
             <motion.div className="flex ">
-                <div className='mt-[-20px]'>
+                <div className='absolute top-0'>
                     <SideBar />
                 </div>
                 <div className='bg-white p-[20px] w-[1200px] overflow-auto rounded-md h-[750px]'>

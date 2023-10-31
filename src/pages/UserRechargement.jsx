@@ -45,7 +45,7 @@ const UserRechargement = () => {
     <div className='flex h-[100vh] items-center justify-end pr-[50px] bg-white'>
       <Notification />
       <div className='bg-white p-[20px] w-[1200px] h-[90vh] overflow-auto rounded-md scrollbar'>
-        <div className='mt-[-60px]'>
+        <div className='absolute top-0'>
           <SideBar />
         </div>
         <div className="container mx-auto p-4 mt-[20px]">
