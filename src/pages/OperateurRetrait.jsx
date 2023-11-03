@@ -122,7 +122,6 @@ const OperateurRetrait = () => {
                                                     >
                                                         Traiter
                                                     </button>
-
                                                 )}
                                             </td>
 
