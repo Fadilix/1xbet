@@ -121,6 +121,7 @@ const OperateurRetrait = () => {
                                                         onClick={() => handleVerif(item.id, { traitement: "-1" })}
                                                     >
                                                         Traiter
+                                                        
                                                     </button>
                                                 )}
                                             </td>
